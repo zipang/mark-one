@@ -1,0 +1,30 @@
+{
+  "name": "mark-one",
+  "module": "src/app.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.10.2",
+    "@types/puppeteer": "^7.0.4",
+    "prettier": "^3.4.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "elysia": "^1.1.26",
+    "marked": "^15.0.4",
+    "playwright-chromium": "^1.49.1",
+    "puppeteer": "^23.11.1"
+  },
+  "scripts": {
+    "convert": "bun src/convert.ts",
+    "dev": "bun --hot src/app.ts",
+    "format": "prettier --write \"src/**/*.{js,ts,tsx,json,md}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,tsx,json,md}\""
+  },
+  "imports": {
+    "@services/*": "./src/services/*",
+    "@api/*": "./src/api/*"
+  }
+}
