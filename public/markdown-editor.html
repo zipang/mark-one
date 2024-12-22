@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Editor</title>
+
+    <link rel="stylesheet" href="revisions.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Markdown Editor</h1>
+        <p>Enter your markdown content below:</p>
+
+        <form id="markdown-editor" action="/api/markdown/render" method="POST" target="_blank">
+            <p>
+
+                <textarea name="markdown" id="markdown-content" cols="80" rows="20">
+# Mark one 
+
+## Introduction
+Mark One is a markdown service that provides conversion to HTML and PDF formats
+
+## Technical stack
+
+- **[Bun.js](https://bun.sh)**: The javascript runtime
+- **[Elysia.js](https://elysiajs.com)**: Fast Web framework for Bun.js
+                </textarea>
+
+            </p>
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+
+    <script>
+        var form = document.querySelector('#markdown-editor');
+
+        function submitForm(evt) {
+
+            evt.preventDefault();
+            var markdownContent = document.getElementById('markdown-content');
+            // Extract the first level one title
+            var title = markdownContent.value.match(/^# (.*)$/m)[1].trim();
+            var serviceURL = `${form.attributes['action'].value}/${title}.pdf`;
+
+            console.log(`Submitting markdown content to '${serviceURL}'`)
+
+            fetch(serviceURL, {
+                method: 'POST',
+                body: markdownContent.value
+            })
+                .then(response => response.blob())
+                .then((pdfData) => {
+                    var file = new File([pdfData], `${title}.pdf`, { type: "application/pdf" });
+                    console.log(`Received PDF data from the markdown conversion of document '${title}'`)
+                    var fileURL = URL.createObjectURL(file);
+                    window.open(fileURL);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+        }
+
+        form.addEventListener("submit", (event) => {
+            submitForm(event);
+        });
+    </script>
+
+</body>
+
+</html>

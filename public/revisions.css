@@ -1,0 +1,122 @@
+* {
+    /* Ensure print colors are accurate */
+    print-color-adjust: exact;
+    /* Use system fonts */
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Ubuntu, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+    line-height: 1.4;
+    color: #333;
+}
+
+code,
+textarea {
+    border: none;
+    background-color: antiquewhite;
+    font-family: monospace, monospace;
+    font-size: 1.1rem;
+}
+
+:root {
+    font-size: 14pt;
+}
+
+/* Add page breaks */
+.page-break {
+    page-break-before: always;
+}
+
+/* Full-width centered container */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    /* define the most readable width for the text */
+    max-width: 80ch;
+    float: none;
+    text-align: justify;
+}
+
+/* Adjust image and background handling */
+img {
+    /* Scale images to fit page */
+    max-width: 100%;
+    /* Preserve aspect ratio */
+    height: auto;
+    /* Remove background images */
+    background-image: none;
+}
+
+h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    text-align: center;
+    color: #2980b9 !important;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 1.6rem;
+    color: #ff8f49 !important;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #ecf0f1;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+ul {
+    background-color: #bbedf9 !important;
+    border-radius: 5px;
+    padding: 0.5rem 2rem;
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+button,
+input[type="submit"] {
+    background: #5cace2;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: hand;
+    padding: 0.2rem 1rem;
+}
+
+button:hover {
+    background-color: #2471a3;
+}
+
+@media print {
+
+    /* Define the page dimensions */
+    @page {
+        size: A4 portrait !important;
+        margin: 10mm !important;
+    }
+
+    :root {
+        font-size: 12pt;
+    }
+
+    body {
+        margin: 0 auto;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1px solid #000;
+        padding: 5pt;
+    }
+}
