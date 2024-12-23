@@ -1,9 +1,9 @@
 # Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
 
 # Content directories
-content
-input
-output
+/content/
+/input/
+/output/
 
 # Logs
 

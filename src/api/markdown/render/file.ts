@@ -5,14 +5,16 @@ import { basename, extname } from "path";
 import { marked } from "marked";
 
 /**
- * Receive a Markdown body and render it as HTML of PDF
+ * Receive a Markdown body and render it to HTML or PDF depending of the filename extension
  * @param {Context} ctx HTTP request context
  * @returns {Promise<Response>}
  */
-export const renderMarkdownFile = async (ctx: Context) => {
+export const renderMarkdownBody = async (ctx: Context) => {
+    const { filename } = ctx.params;
     const markdown = await ctx.body as string;
-    const title = basename(ctx.params.filename);
-    const ext = extname(ctx.params.filename).toLowerCase();
+
+    const ext = extname(filename).toLowerCase();
+    const title = basename(filename, ext);
 
     // We always start with HTML
     let content = await marked(markdown);

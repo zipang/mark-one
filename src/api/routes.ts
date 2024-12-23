@@ -1,7 +1,7 @@
 import { Elysia } from 'elysia'
-import { renderMarkdownFile } from '@api/markdown/render/file'
 import { readFile } from '@api/content/read'
+import { renderMarkdownBody } from '@api/markdown/render/file'
 
 export const routes = new Elysia()
     .get('/content/*', readFile)
-    .post('/api/markdown/render/:filename', renderMarkdownFile)
+    .post('/api/markdown/render/:filename', renderMarkdownBody)
